@@ -13,6 +13,7 @@ import org.apache.commons.lang3.StringUtils
 
 class JavaCodeGenerator {
     private val packageName = "io.github.sullis.emoji.utils"
+    private val separator = '_'
 
     @Throws(IOException::class)
     fun generate(outputPath: Path) {
@@ -79,10 +80,11 @@ class JavaCodeGenerator {
     private fun flagMethodName(e: Emoji): String {
         val words = e.tags.filterNot { it == "flag" }
         val sb = StringBuilder()
-        sb.append("flag_")
+        sb.append("flag")
+        sb.append(separator)
         words.forEach {
             sb.append(it)
-            sb.append("_")
+            sb.append(separator)
         }
         return sb.toString()
     }
@@ -104,16 +106,16 @@ class JavaCodeGenerator {
                 sb.append(lowerCase)
             } else {
                 if (sb.isEmpty()) {
-                    sb.append("_")
+                    sb.append(separator)
                 } else {
-                    if (sb.get(sb.length - 1) != '_') {
-                        sb.append("_")
+                    if (sb.get(sb.length - 1) != separator) {
+                        sb.append(separator)
                     }
                 }
             }
         }
         if (!SourceVersion.isName(sb)) {
-            sb.append("_")
+            sb.append(separator)
         }
         return sb.toString()
     }
