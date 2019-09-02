@@ -74,7 +74,13 @@ class JavaCodeGenerator {
             if (Character.isJavaIdentifierPart(lowerCase)) {
                 sb.append(lowerCase)
             } else {
-                sb.append("_")
+                if (sb.isEmpty()) {
+                    sb.append("_")
+                } else {
+                    if (sb.get(sb.length - 1) != '_') {
+                        sb.append("_")
+                    }
+                }
             }
         }
         if (!SourceVersion.isName(sb)) {
