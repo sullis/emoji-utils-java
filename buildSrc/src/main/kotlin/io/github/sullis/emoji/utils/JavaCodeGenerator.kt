@@ -59,7 +59,7 @@ class JavaCodeGenerator {
           val mspec = MethodSpec.methodBuilder(methodName)
                   .addModifiers(Modifier.PUBLIC)
                   .returns(ClassName.bestGuess("$packageName.EmojiStringBuilder"))
-                  .addStatement("sb.append(\$T.getByUnicode(\$S))", EmojiManager::class.java, emoji.unicode)
+                  .addStatement("sb.append(\$S)", emoji.unicode)
                   .addStatement("return this")
                   .build()
           mspec
