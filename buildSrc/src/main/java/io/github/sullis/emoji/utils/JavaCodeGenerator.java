@@ -29,8 +29,17 @@ public class JavaCodeGenerator {
                 .addStatement("return sb.toString()")
                 .build();
 
+        MethodSpec appendMethod = MethodSpec.methodBuilder("append")
+                .addModifiers(Modifier.PUBLIC)
+                .addParameter(CharSequence.class, "cs")
+                .returns(ClassName.bestGuess(packageName + ".EmojiStringBuilder"))
+                .addStatement("sb.append(cs)")
+                .addStatement("return this")
+                .build();
+
         TypeSpec emojiStringBuilderType = TypeSpec.classBuilder("EmojiStringBuilder")
                 .addModifiers(Modifier.PUBLIC, Modifier.FINAL)
+                .addMethod(appendMethod)
                 .addMethod(toStringMethod)
                 .addField(StringBuilder.class, "sb", Modifier.PRIVATE)
                 .build();
