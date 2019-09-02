@@ -10,6 +10,9 @@ public class EmojiStringBuilderTest {
         sb.append("Hello");
         sb.append(" ");
         sb.append("World");
+        sb.append(" ");
+        sb.waving_hand_sign();
+        sb.beer_mug();
         assertEquals("Hello World", sb.toString());
     }
 

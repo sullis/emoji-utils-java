@@ -13,6 +13,8 @@ repositories {
 }
 
 dependencies {
+    implementation("com.vdurmont:emoji-java:5.1.0")
+
     // Align versions of all Kotlin components
     implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
 
