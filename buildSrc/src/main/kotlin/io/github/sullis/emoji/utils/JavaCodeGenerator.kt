@@ -4,7 +4,6 @@ import java.nio.file.Path
 import java.io.IOException
 import com.squareup.javapoet.*
 import javax.lang.model.element.Modifier
-import java.util.ArrayList
 
 class JavaCodeGenerator {
     private val packageName = "io.github.sullis.emoji.utils"
@@ -20,13 +19,10 @@ class JavaCodeGenerator {
     }
 
     private fun buildJavaFiles(): List<JavaFile> {
-        val javaFiles = ArrayList<JavaFile>()
-
-        javaFiles.add(buildEmojiStringBuilder())
-        return javaFiles
+        return listOf((buildEmojiStringBuilder()))
     }
 
-    protected fun buildEmojiStringBuilder(): JavaFile {
+    private fun buildEmojiStringBuilder(): JavaFile {
         val toStringMethod = MethodSpec.methodBuilder("toString")
                 .addModifiers(Modifier.PUBLIC)
                 .returns(String::class.java)
