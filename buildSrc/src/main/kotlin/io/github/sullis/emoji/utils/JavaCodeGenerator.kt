@@ -8,7 +8,8 @@ import com.vdurmont.emoji.EmojiManager
 import java.util.stream.Stream
 import javax.lang.model.element.Modifier
 import kotlin.streams.toList
-import javax.lang.model.SourceVersion;
+import javax.lang.model.SourceVersion
+import org.apache.commons.lang3.StringUtils
 
 class JavaCodeGenerator {
     private val packageName = "io.github.sullis.emoji.utils"
@@ -67,13 +68,33 @@ class JavaCodeGenerator {
                 .build()
     }
 
+    private fun isFlag(e: Emoji): Boolean {
+      return (e.tags.size == 2) && e.tags.contains("flag")
+    }
+
+    private fun flagMethodName(e: Emoji): String {
+        val words = e.tags.filterNot { it == "flag" }
+        val sb = StringBuilder()
+        sb.append("flag_")
+        words.forEach {
+            sb.append(it)
+            sb.append("_")
+        }
+        return sb.toString()
+    }
+
     private fun toJavaMethodName(e: Emoji): String {
-        return toJavaMethodName(e.description.trim())
+        val candidateName = if (isFlag(e)) {
+            flagMethodName(e)
+        } else {
+            e.description.trim()
+        }
+        return toJavaMethodName(candidateName)
     }
 
     private fun toJavaMethodName(input: String): String {
         val sb = StringBuilder()
-        for (c in input.toCharArray()) {
+        for (c in StringUtils.removeEnd(input, "_").toCharArray()) {
             val lowerCase = c.toLowerCase()
             if (Character.isJavaIdentifierPart(lowerCase)) {
                 sb.append(lowerCase)
