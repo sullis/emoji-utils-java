@@ -32,3 +32,4 @@ out
 .classpath
 .settings/
 generated/
+src/generated/
