@@ -36,7 +36,6 @@ sourceSets["main"].java {
 
 task("generateEmojiStringBuilder") {
     generatedSrcDir.mkdirs()
-    System.out.println("mkdirs() done.")
     try {
         JavaCodeGenerator().generate(generatedSrcDir.toPath())
     } catch (ex: Exception) {
