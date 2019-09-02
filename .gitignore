@@ -31,3 +31,4 @@ out
 *.iml
 .classpath
 .settings/
+generated/
