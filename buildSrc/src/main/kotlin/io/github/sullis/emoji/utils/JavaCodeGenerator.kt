@@ -45,15 +45,16 @@ class JavaCodeGenerator {
                 .build()
 
         val sbField = FieldSpec.builder(StringBuilder::class.java, "sb")
-        sbField.addModifiers(Modifier.PRIVATE, Modifier.FINAL)
-        sbField.initializer(CodeBlock.builder().addStatement("new StringBuilder()").build())
+                .addModifiers(Modifier.PRIVATE, Modifier.FINAL)
+                .initializer(CodeBlock.builder().addStatement("new StringBuilder()").build())
+                .build()
 
         val emojiStringBuilderType = TypeSpec.classBuilder("EmojiStringBuilder")
                 .addModifiers(Modifier.PUBLIC, Modifier.FINAL)
                 .addMethod(appendMethod)
                 .addMethods(buildEmojiMethods().toList())
                 .addMethod(toStringMethod)
-                .addField(sbField.build())
+                .addField(sbField)
 
         return JavaFile.builder(packageName, emojiStringBuilderType.build())
                 .build()
