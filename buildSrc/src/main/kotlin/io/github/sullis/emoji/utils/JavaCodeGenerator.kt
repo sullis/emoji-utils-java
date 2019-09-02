@@ -54,16 +54,17 @@ class JavaCodeGenerator {
     }
 
     private fun buildEmojiMethods(): Stream<MethodSpec> {
-        return EmojiManager.getAll().stream().map { emoji ->
-          val methodName = toJavaMethodName(emoji.description.trim())
-          val mspec = MethodSpec.methodBuilder(methodName)
-                  .addModifiers(Modifier.PUBLIC)
-                  .returns(ClassName.bestGuess("$packageName.EmojiStringBuilder"))
-                  .addStatement("sb.append(\$S)", emoji.unicode)
-                  .addStatement("return this")
-                  .build()
-          mspec
-        }
+        return EmojiManager.getAll().stream().map { emoji -> buildEmojiMethod(emoji) }
+    }
+
+    private fun buildEmojiMethod(emoji: Emoji): MethodSpec {
+        val methodName = toJavaMethodName(emoji.description.trim())
+        return MethodSpec.methodBuilder(methodName)
+                .addModifiers(Modifier.PUBLIC)
+                .returns(ClassName.bestGuess("$packageName.EmojiStringBuilder"))
+                .addStatement("sb.append(\$S)", emoji.unicode)
+                .addStatement("return this")
+                .build()
     }
 
     private fun toJavaMethodName(input: String): String {
