@@ -13,7 +13,7 @@ public class EmojiStringBuilderTest {
         sb.append(" ");
         sb.waving_hand_sign();
         sb.beer_mug();
-        assertEquals("Hello World", sb.toString());
+        assertEquals("Hello World FIXME", sb.toString());
     }
 
 }
