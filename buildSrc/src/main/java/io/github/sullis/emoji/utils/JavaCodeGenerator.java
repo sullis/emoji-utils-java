@@ -1,7 +1,6 @@
 package io.github.sullis.emoji.utils;
 
 import java.nio.file.Path;
-import java.io.File;
 import java.io.IOException;
 import com.squareup.javapoet.*;
 import javax.lang.model.element.Modifier;
@@ -23,6 +22,11 @@ public class JavaCodeGenerator {
     protected List<JavaFile> buildJavaFiles() {
         List<JavaFile> javaFiles = new ArrayList<JavaFile>();
 
+        javaFiles.add(buildEmojiStringBuilder());
+        return javaFiles;
+    }
+
+    protected JavaFile buildEmojiStringBuilder() {
         MethodSpec toStringMethod = MethodSpec.methodBuilder("toString")
                 .addModifiers(Modifier.PUBLIC)
                 .returns(String.class)
@@ -44,10 +48,6 @@ public class JavaCodeGenerator {
                 .addField(StringBuilder.class, "sb", Modifier.PRIVATE)
                 .build();
 
-        JavaFile javaFile = JavaFile.builder(packageName, emojiStringBuilderType)
-                .build();
-
-        javaFiles.add(javaFile);
-        return javaFiles;
+        return JavaFile.builder(packageName, emojiStringBuilderType).build();
     }
 }
