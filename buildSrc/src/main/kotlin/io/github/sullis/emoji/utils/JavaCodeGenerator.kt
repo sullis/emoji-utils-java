@@ -69,8 +69,9 @@ class JavaCodeGenerator {
     private fun toJavaMethodName(input: String): String {
         val sb = StringBuilder()
         for (c in input.toCharArray()) {
-            if (Character.isJavaIdentifierPart(c)) {
-                sb.append(c)
+            val lowerCase = c.toLowerCase()
+            if (Character.isJavaIdentifierPart(lowerCase)) {
+                sb.append(lowerCase)
             } else {
                 sb.append("_")
             }
