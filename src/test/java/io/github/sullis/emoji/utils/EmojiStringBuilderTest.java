@@ -11,11 +11,9 @@ public class EmojiStringBuilderTest {
         sb.append(" ");
         sb.append("World");
         sb.append(" ");
-        sb.waving_hand_sign();
         sb.beer_mug();
         sb.flag_united_states_of_america();
-        System.out.println("TEST: " + sb.toString());
-        assertEquals("Hello World FIXME", sb.toString());
+        assertEquals("Hello World 🍺🇺🇸", sb.toString());
     }
 
 }
