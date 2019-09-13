@@ -10,8 +10,10 @@ public class EmojiStringBuilderTest {
         sb.append("Hello World: beer ")
                 .beer_mug()
                 .append(" flag ")
-                .flag_united_states_of_america();
-        assertEquals("Hello World: beer 🍺 flag 🇺🇸", sb.toString());
+                .flag_united_states_of_america()
+        .append(" character ")
+        .append('A');
+        assertEquals("Hello World: beer 🍺 flag 🇺🇸 character A", sb.toString());
     }
 
     @Test

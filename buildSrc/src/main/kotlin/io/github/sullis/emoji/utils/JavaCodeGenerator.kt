@@ -36,11 +36,19 @@ class JavaCodeGenerator {
                 .addStatement("return sb.toString()")
                 .build()
 
-        val appendMethod = MethodSpec.methodBuilder("append")
+        val appendCharSeqMethod = MethodSpec.methodBuilder("append")
                 .addModifiers(Modifier.PUBLIC)
                 .addParameter(CharSequence::class.java, "cs")
                 .returns(ClassName.bestGuess("$packageName.EmojiStringBuilder"))
                 .addStatement("sb.append(cs)")
+                .addStatement("return this")
+                .build()
+
+        val appendCharMethod = MethodSpec.methodBuilder("append")
+                .addModifiers(Modifier.PUBLIC)
+                .addParameter(java.lang.Character.TYPE, "ch")
+                .returns(ClassName.bestGuess("$packageName.EmojiStringBuilder"))
+                .addStatement("sb.append(ch)")
                 .addStatement("return this")
                 .build()
 
@@ -51,7 +59,8 @@ class JavaCodeGenerator {
 
         val emojiStringBuilderType = TypeSpec.classBuilder("EmojiStringBuilder")
                 .addModifiers(Modifier.PUBLIC, Modifier.FINAL)
-                .addMethod(appendMethod)
+                .addMethod(appendCharSeqMethod)
+                .addMethod(appendCharMethod)
                 .addMethods(buildEmojiMethods().toList())
                 .addMethod(toStringMethod)
                 .addField(sbField)
