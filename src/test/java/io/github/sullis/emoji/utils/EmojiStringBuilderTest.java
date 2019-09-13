@@ -11,8 +11,8 @@ public class EmojiStringBuilderTest {
                 .beer_mug()
                 .append(" flag ")
                 .flag_united_states_of_america()
-        .append(" character ")
-        .append('A');
+                .append(" character ")
+                .append('A');
         assertEquals("Hello World: beer 🍺 flag 🇺🇸 character A", sb.toString());
     }
 
