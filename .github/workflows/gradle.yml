@@ -18,6 +18,6 @@ jobs:
     - name: ls1
       run: ls -la /home/runner/work/emoji-utils-java/emoji-utils-java
     - name: ls2
-      run: ls -la ./gradle/wrapper/gradle-wrapper.jar
+      run: ls -la ./gradle/wrapper
     - name: Build with Gradle
       run: bash -x ./gradle build
