@@ -13,6 +13,7 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
-    - name: Build with Gradle
+    - name: ls
       run: ls -la /home/runner/work/emoji-utils-java/emoji-utils-java/gradle/wrapper/gradle-wrapper.jar
+    - name: Build with Gradle
       run: bash -x ./gradle build
