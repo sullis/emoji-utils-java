@@ -24,8 +24,8 @@ dependencies {
 //    testImplementation("org.jetbrains.kotlin:kotlin-test")
 //    testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
 
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.5.1")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.5.1")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.5.2")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.5.2")
 }
 
 val generatedSrcDir = File("generated/src/main/java/")
