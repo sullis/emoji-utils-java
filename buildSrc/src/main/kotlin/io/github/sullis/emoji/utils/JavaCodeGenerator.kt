@@ -20,7 +20,6 @@ class JavaCodeGenerator {
         val files = buildJavaFiles()
 
         for (file in files) {
-            file.writeTo(System.out)
             file.writeTo(outputPath)
         }
     }
