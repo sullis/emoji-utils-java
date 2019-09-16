@@ -14,6 +14,8 @@ jobs:
       with:
         java-version: 1.8
     - name: ls
-      run: ls -la /home/runner/work/emoji-utils-java/emoji-utils-java/gradle/wrapper/gradle-wrapper.jar
+      run: ls -la ./gradle/wrapper/gradle-wrapper.jar
+    - name: pwd
+      run: pwd
     - name: Build with Gradle
       run: bash -x ./gradle build
