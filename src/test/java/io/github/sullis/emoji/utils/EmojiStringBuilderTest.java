@@ -7,13 +7,13 @@ public class EmojiStringBuilderTest {
     @Test
     public void happyPath() {
         EmojiStringBuilder sb = new EmojiStringBuilder();
-        sb.append("Hello World: beer ")
+        sb.append("Hello World! ")
                 .beer_mug()
-                .append(" flag ")
+                .append(" and ")
                 .flag_united_states_of_america()
-                .append(" character ")
+                .append(" and one character ")
                 .append('A');
-        assertEquals("Hello World: beer 🍺 flag 🇺🇸 character A", sb.toString());
+        assertEquals("Hello World! 🍺 and 🇺🇸 and one character A", sb.toString());
     }
 
     @Test
