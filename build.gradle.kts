@@ -50,6 +50,10 @@ tasks.withType<org.gradle.api.tasks.compile.JavaCompile>().configureEach {
   dependsOn(javaCodegen)
 }
 
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+  dependsOn(javaCodegen)
+}
+
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
