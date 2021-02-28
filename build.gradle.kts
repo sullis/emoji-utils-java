@@ -28,20 +28,27 @@ dependencies {
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.1")
 }
 
-val generatedSrcDir = File("generated/src/main/java/")
+val generatedSrcDir = File(buildDir, "generated/sources/emoji-utils/src/main/java/")
 
 sourceSets["main"].java {
     srcDir(generatedSrcDir.toString())
 }
 
-task("generateEmojiStringBuilder") {
+val javaCodegen by tasks.registering {
     generatedSrcDir.mkdirs()
     try {
         JavaCodeGenerator().generate(generatedSrcDir.toPath())
     } catch (ex: Exception) {
         ex.printStackTrace()
+        throw ex
     }
 }
+
+val compileJava: JavaCompile by tasks
+compileJava.dependsOn(javaCodegen)
+
+val compileTestJava: JavaCompile by tasks
+compileTestJava.dependsOn(javaCodegen)
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
