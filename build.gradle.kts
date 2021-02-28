@@ -34,7 +34,7 @@ sourceSets["main"].java {
     srcDir(generatedSrcDir.toString())
 }
 
-val javaCodegen by tasks.registering {
+val javaCodegen = tasks.register("javaCodegen") {
     generatedSrcDir.mkdirs()
     try {
         JavaCodeGenerator().generate(generatedSrcDir.toPath())
