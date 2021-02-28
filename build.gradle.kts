@@ -28,7 +28,7 @@ dependencies {
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.1")
 }
 
-val generatedSrcDir = File(buildDir, "generated/sources/emoji-utils/src/main/java/")
+val generatedSrcDir = File(buildDir, "generated/sources/emoji-utils/")
 
 sourceSets["main"].java {
     srcDir(generatedSrcDir.toString())
@@ -36,11 +36,13 @@ sourceSets["main"].java {
 
 val javaCodegen = tasks.register("javaCodegen") {
     generatedSrcDir.mkdirs()
-    try {
-        JavaCodeGenerator().generate(generatedSrcDir.toPath())
-    } catch (ex: Exception) {
-        ex.printStackTrace()
-        throw ex
+    doLast {
+      try {
+          JavaCodeGenerator().generate(generatedSrcDir.toPath())
+      } catch (ex: Exception) {
+          ex.printStackTrace()
+          throw ex
+      }
     }
 }
 
