@@ -44,11 +44,9 @@ val javaCodegen = tasks.register("javaCodegen") {
     }
 }
 
-val compileJava: JavaCompile by tasks
-compileJava.dependsOn(javaCodegen)
-
-val compileTestJava: JavaCompile by tasks
-compileTestJava.dependsOn(javaCodegen)
+tasks.withType<org.gradle.api.tasks.compile.JavaCompile>().configureEach {
+  dependsOn(javaCodegen)
+}
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
