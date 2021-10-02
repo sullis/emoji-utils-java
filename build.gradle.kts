@@ -25,7 +25,7 @@ dependencies {
 //    testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.2")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.2")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
 }
 
 val generatedSrcDir = File(buildDir, "generated/sources/emoji-utils/")
